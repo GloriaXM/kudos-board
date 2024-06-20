@@ -3,7 +3,7 @@ import SortBar from './SortBar'
 import BoardListDisplay from './BoardListDisplay'
 import {BoardContext} from '../BoardContext'
 import {useState, useEffect} from 'react'
-import BoardCard from './BoardCard';
+import { NavLink } from 'react-router-dom';
 
 function MainView({}) {
     const [boardList, setBoardList] = useState([{}]);
@@ -19,17 +19,24 @@ function MainView({}) {
           }
           const response = await fetch(queryUrl);
           const loadedBoards = await response.json();
-          setBoardList(loadedBoards)
+          setBoardList(loadedBoards);
         }
         fetchBoardList();
       }, [boardListSortType]);
 
+    useEffect(() => {
+        console.log(boardList);
+    }, [boardList]);
+
 
     return (
-    <BoardContext.Provider value={sortType} className="mainView">
-        <SortBar />
-        <BoardListDisplay boardList={boardList}/>
-    </BoardContext.Provider>
+        <>
+           <NavLink to='/createBoard'>Create New Board</NavLink>
+            <BoardContext.Provider value={sortType} className="mainView">
+              <SortBar />
+              <BoardListDisplay boardList={boardList}/>
+            </BoardContext.Provider>
+        </>
     )
 }
 

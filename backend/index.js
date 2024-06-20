@@ -48,12 +48,13 @@ app.get('/board/search/:name', async (req, res) => {
 });
 
 app.post('/board', async (req, res) => {
-    const {imagesrc, boardname, boardtype} = req.body;
+    const {imagesrc, boardname, boardtype, description} = req.body;
     const newBoard = await prisma.board.create({
         data: {
             imageSrc: imagesrc,
             boardName: boardname,
-            boardType: boardtype
+            boardType: boardtype,
+            description: description
         }
     });
     res.json(newBoard);
@@ -86,4 +87,55 @@ app.patch('/board/:boardId', async (req, res) => {
         },
     })
     res.status(204).send();
+});
+
+app.get('/board/cards/:boardId', async (req, res) => {
+    const boardId = parseInt(req.params.boardId);
+    const cards = await prisma.card.findMany({
+        where: {
+            boardId: boardId
+        },
+        orderBy: {
+            id: 'desc'
+        }
+    });
+    res.json(cards);
+});
+
+app.delete('/card/:id', async (req, res) => {
+    const cardId = parseInt(req.params.id);
+    const card = await prisma.card.findUnique({
+        where: {id: cardId}
+    });
+    res.status(204).send()
+});
+
+app.patch('/card/:id', async (req, res) => {
+    const cardId = parseInt(req.params.id);
+    const newUpvotes = parseInt(req.query.upvotes);
+
+    const updateCard = await prisma.card.update({
+        where: {
+          id: cardId,
+        },
+        data: {
+          upvotes: newUpvotes
+        },
+    })
+    res.status(204).send();
+});
+
+app.post('/board/card', async (req, res) => {
+    const {title, note, author, gifSrc, upvotes, boardId} = req.body;
+    const newCard = await prisma.card.create({
+        data: {
+            title: title,
+            note: note,
+            author: author,
+            gifSrc: gifSrc,
+            upvotes: upvotes,
+            boardId: boardId
+        }
+    });
+    res.json(newCard);
 });

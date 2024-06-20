@@ -3,12 +3,12 @@ import {useState, useEffect} from 'react'
 
 function BoardListDisplay({boardList}) {
 
-
+  console.log("boardList", boardList)
 
   return (
     <div className="boardList">
       {boardList.map(board => (
-          <BoardCard key={board.id} id={board.id} title={board.boardName} imgSrc={board.imgSrc} type={board.boardType}
+          <BoardCard key={board.id} id={board.id} title={board.boardName} imgSrc={board.imageSrc} type={board.boardType}
           onClick={() => {setCurrBoard(board.id)}}/>
           ))}
     </div>

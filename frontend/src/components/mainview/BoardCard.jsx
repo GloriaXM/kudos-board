@@ -7,13 +7,14 @@ function BoardCard({id, title, imgSrc, type}) {
 
     const handleBoardClick = () => {
         setDisplayedBoardId(id);
-        console.log(id);
     }
+
+    console.log("imgsrc", imgSrc)
 
     return (
         <div id={id} className="boardCard" onClick={handleBoardClick} >
             <h2> Title: {title}</h2>
-            <img className="boardCardImg" src={imgSrc} alt="Board thumbnail"/>
+            <img className="boardCardImg" src={imgSrc} alt={imgSrc}/>
             <h3> Type: {type} </h3>
             <NavLink to='/boardDetails'>View</NavLink>
             <button className="deleteBoardButton"> Delete </button>

@@ -18,11 +18,17 @@ model Board {
   boardName String
   boardType String
   imageSrc String
+  description String
   cards Card[]
 }
 
 model Card {
   id Int @id @default(autoincrement())
+  title String
+  note String
+  author String
+  gifSrc String
+  upvotes Int
   board Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
   boardId Int
 }

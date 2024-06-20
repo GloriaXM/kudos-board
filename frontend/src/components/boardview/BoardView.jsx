@@ -1,33 +1,42 @@
-import { useBoardViewContext, useBoardViewId } from '../BoardContext';
+import { useBoardViewId, } from '../BoardContext';
 import {useState, useEffect} from 'react';
 import { NavLink } from 'react-router-dom';
+import CardList from './CardList'
 
-function BoardView() {
+
+function BoardView({boardName}) {
   const [displayedBoardId, setDisplayedBoardId] = useBoardViewId();
 
-  const [boardTitle, setBoardTitle] = useState('');
   const [imageSrc, setImageSrc] = useState('');
   const [description, setDescription] = useState('');
   const [upvotes, setUpvotes] = useState(0);
 
+  const [cardList, setCardList] = useState([{}]);
+
   useEffect(() => {
     async function fetchBoardDetails() {
-      let queryUrl = new URL(`http://localhost:5000/board/${displayedBoardId}`);
+      let queryUrl = new URL(`http://localhost:5000/board/cards/${displayedBoardId}`);
       const response = await fetch(queryUrl);
-      const loadedBoard = await response.json();
-      setBoardTitle(loadedBoard.boardName);
+      const loadedCards = await response.json();
+      setCardList(loadedCards);
     }
     fetchBoardDetails();
   }, [displayedBoardId]);
 
+  useEffect(() => {
+    console.log(cardList)
+  }, [cardList]);
+
     return (
       <div className="boardView" >
+        <div className="boardViewList">
         <button> <NavLink to='/'>Back</NavLink></button>
-        <h2> Title: {boardTitle} </h2>
-        <img src={imageSrc}/>
+        <h2> Title: {displayedBoardId} </h2>
+        <img className="" src={imageSrc}/>
         <p> Description: {description}</p>
-        <button className="upvoteButton"> Upvote: {upvotes}</button>
-        <button className="deleteButton"> Delete {upvotes}</button>
+        </div>
+        <NavLink to='/createCard'>Create New Card</NavLink>
+        <CardList cardList={cardList}/>
       </div>
     )
   }
