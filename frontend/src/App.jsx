@@ -14,7 +14,11 @@ function App() {
 
   useEffect(() => {
     async function fetchBoardList() {
-      const response = await await fetch(`http://localhost:5000/board`);
+      let queryUrl = new URL("http://localhost:5000/board?");
+      if (boardListSortType !== ''){
+        queryUrl.searchParams.append("type", boardListSortType);
+      }
+      const response = await fetch(queryUrl);
       const loadedBoards = await response.json();
       setBoardList(loadedBoards)
     }

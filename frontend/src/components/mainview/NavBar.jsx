@@ -1,10 +1,14 @@
+import './NavBar.css'
+import SortButton from './SortButton'
+
 function NavBar() {
 
   return (
-    <>
-      <h1> NavBar</h1>
-
-    </>
+    <div className="navBar">
+      <SortButton sortType="congratulations"/>
+      <SortButton sortType="thanks"/>
+      <SortButton sortType="inspiration"/>
+    </div>
   )
 }
 

@@ -15,7 +15,6 @@ app.listen(PORT, () =>
 ));
 
 app.get('/board', async (req, res) => {
-    const queries = req.query;
     const board = await prisma.board.findMany({
         where: {
             boardType: req.query.type,
