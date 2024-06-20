@@ -1,11 +1,11 @@
 function NavBar() {
 
-    return (
-      <>
-        <h1> NavBar</h1>
+  return (
+    <>
+      <h1> NavBar</h1>
 
-      </>
-    )
-  }
+    </>
+  )
+}
 
-  export default NavBar
+export default NavBar
