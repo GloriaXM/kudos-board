@@ -1,7 +1,7 @@
-import './NavBar.css'
+import './SortBar.css'
 import SortButton from './SortButton'
 
-function NavBar() {
+function SortBar() {
 
   return (
     <div className="navBar">
@@ -12,4 +12,4 @@ function NavBar() {
   )
 }
 
-export default NavBar
+export default SortBar

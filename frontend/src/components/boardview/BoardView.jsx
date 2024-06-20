@@ -1,8 +1,8 @@
 import { useBoardViewContext, useBoardViewId } from '../BoardContext';
 import {useState, useEffect} from 'react';
+import { NavLink } from 'react-router-dom';
 
 function BoardView() {
-  const [displayBoardView, setDisplayBoardView] = useBoardViewContext();
   const [displayedBoardId, setDisplayedBoardId] = useBoardViewId();
 
   const [boardTitle, setBoardTitle] = useState('');
@@ -21,10 +21,8 @@ function BoardView() {
   }, [displayedBoardId]);
 
     return (
-      <div className="boardView" style={{
-        visibility: displayBoardView ? "visible" : "hidden",
-      }}>
-        <button className="closeBoardDisplay" onClick={() => {setDisplayBoardView(false)}}>Close</button>
+      <div className="boardView" >
+        <button> <NavLink to='/'>Back</NavLink></button>
         <h2> Title: {boardTitle} </h2>
         <img src={imageSrc}/>
         <p> Description: {description}</p>

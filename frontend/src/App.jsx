@@ -1,47 +1,29 @@
-import { useState, useEffect} from 'react'
+
 import './App.css'
+import './components/mainview/MainView'
+import { Route, Routes } from 'react-router-dom';
 import Header from './components/mainview/Header'
-import NavBar from './components/mainview/NavBar'
-import BoardListDisplay from './components/mainview/BoardListDisplay'
+import MainView from './components/mainview/MainView';
 import BoardView from './components/boardview/BoardView'
-import {BoardContext, BoardViewContext, BoardViewId} from './components/BoardContext'
+import {BoardViewId} from './components/BoardContext'
+import {useState} from 'react'
+
 
 function App() {
-  const [boardList, setBoardList] = useState([{}]);
-  const [clickedBoardId, setClickedBoardId] = useState(0); //Use this state to keep track of what id we want to call the db with to open view
-  const [boardListSortType, setBoardListSortType] = useState('');
-  const sortType = [boardListSortType, setBoardListSortType];
 
-  const [displayBoardView, setDisplayBoardView] = useState(false);
-  const displayBoardDetails = [displayBoardView, setDisplayBoardView];
-
-  const [displayedBoardId, setDisplayedBoardId] = useState(0);
-  const displayedBoardIds = [displayedBoardId, setDisplayedBoardId];
-
-  useEffect(() => {
-    async function fetchBoardList() {
-      let queryUrl = new URL("http://localhost:5000/board?");
-      if (boardListSortType !== ''){
-        queryUrl.searchParams.append("type", boardListSortType);
-      }
-      const response = await fetch(queryUrl);
-      const loadedBoards = await response.json();
-      setBoardList(loadedBoards)
-    }
-    fetchBoardList();
-  }, [boardListSortType]);
+    const [displayedBoardId, setDisplayedBoardId] = useState(0);
+    const displayedBoardIds = [displayedBoardId, setDisplayedBoardId];
 
   return (
-    <BoardContext.Provider value={sortType} className="app">
-      <Header />
-      <NavBar />
-      <BoardViewContext.Provider value={displayBoardDetails}>
+    <div className="app">
+      <Header/>
         <BoardViewId.Provider value={displayedBoardIds}>
-          <BoardListDisplay boardList={boardList}/>
-          <BoardView />
+        <Routes>
+          <Route exact path='/' element={<MainView/>}></Route>
+          <Route exact path='/boardDetails' element={<BoardView/>}></Route>
+        </Routes>
         </BoardViewId.Provider>
-      </BoardViewContext.Provider>
-    </BoardContext.Provider>
+    </div>
   )
 }
 

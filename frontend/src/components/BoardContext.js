@@ -6,5 +6,5 @@ export const useBoardContext = () => useContext(BoardContext);
 export const BoardViewContext = createContext(false);
 export const useBoardViewContext = () => useContext(BoardViewContext);
 
-export const BoardViewId = createContext(false);
+export const BoardViewId = createContext(0);
 export const useBoardViewId = () => useContext(BoardViewId);
