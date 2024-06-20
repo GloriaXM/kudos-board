@@ -4,13 +4,19 @@ import Header from './components/mainview/Header'
 import NavBar from './components/mainview/NavBar'
 import BoardListDisplay from './components/mainview/BoardListDisplay'
 import BoardView from './components/boardview/BoardView'
-import {BoardContext} from './components/BoardContext'
+import {BoardContext, BoardViewContext, BoardViewId} from './components/BoardContext'
 
 function App() {
   const [boardList, setBoardList] = useState([{}]);
   const [clickedBoardId, setClickedBoardId] = useState(0); //Use this state to keep track of what id we want to call the db with to open view
   const [boardListSortType, setBoardListSortType] = useState('');
   const sortType = [boardListSortType, setBoardListSortType];
+
+  const [displayBoardView, setDisplayBoardView] = useState(false);
+  const displayBoardDetails = [displayBoardView, setDisplayBoardView];
+
+  const [displayedBoardId, setDisplayedBoardId] = useState(0);
+  const displayedBoardIds = [displayedBoardId, setDisplayedBoardId];
 
   useEffect(() => {
     async function fetchBoardList() {
@@ -26,11 +32,15 @@ function App() {
   }, [boardListSortType]);
 
   return (
-    <BoardContext.Provider value={sortType}className="app">
+    <BoardContext.Provider value={sortType} className="app">
       <Header />
       <NavBar />
-      <BoardListDisplay boardList={boardList}/>
-      <BoardView />
+      <BoardViewContext.Provider value={displayBoardDetails}>
+        <BoardViewId.Provider value={displayedBoardIds}>
+          <BoardListDisplay boardList={boardList}/>
+          <BoardView />
+        </BoardViewId.Provider>
+      </BoardViewContext.Provider>
     </BoardContext.Provider>
   )
 }

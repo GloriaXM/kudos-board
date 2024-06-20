@@ -24,6 +24,7 @@ app.get('/board', async (req, res) => {
             imageSrc: true,
             boardName: true,
             boardType: true,
+            id: true
         },
     });
     res.json(board);
@@ -32,7 +33,7 @@ app.get('/board', async (req, res) => {
 //Don't really see the need for this one
 app.get('/board/:id', async (req, res) => {
     const boardId = parseInt(req.params.id);
-    const board = await prisma.board.findMany({
+    const board = await prisma.board.findUnique({
         where: {id: boardId}
     });
     res.json(board);
