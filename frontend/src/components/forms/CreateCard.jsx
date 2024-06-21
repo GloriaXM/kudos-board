@@ -15,8 +15,6 @@ function CreateCard() {
   async function postNewCard(e) {
     e.preventDefault();
 
-
-
     let queryUrl = new URL(`http://localhost:5000/board/card`);
     fetch(queryUrl, {
         method: "POST",
@@ -37,9 +35,9 @@ function CreateCard() {
 
   }
 
-  async function handleSearchChange(){
+  async function handleSearchChange(e, value){
     const apiKey = import.meta.env.VITE_GIPHY_API_KEY;
-    const searchTerm = document.getElementById("inputGifSrc").value;
+    const searchTerm = value;
 
     let queryUrl = new URL(`http://api.giphy.com/v1/gifs/search?limit=7&api_key=${apiKey}`);
     queryUrl.searchParams.append("q", searchTerm);
@@ -47,9 +45,9 @@ function CreateCard() {
     console.log(queryUrl)
     const gifRequest = await fetch(queryUrl);
     const result = await gifRequest.json();
-    console.log(result);
+    console.log(result.data);
 
-    setSearchOptions(result);
+    setSearchOptions(result.data);
 
   }
 
@@ -57,6 +55,15 @@ function CreateCard() {
     console.log("search options")
     console.log(searchOptions);
   }, [searchOptions])
+
+  function displaySearchedImg (e, value) {
+    console.log("value")
+    console.log(value)
+
+    console.log("e target")
+    // setCurrGif()
+
+  }
 
   return (
     <>
@@ -74,46 +81,31 @@ function CreateCard() {
         <input type="text" id="inputAuthor" name="author"/>
 
         {/* <label htmlFor="gifSrc">Search Gif:</label>
-        <input type="text" id="inputGifSrc" name="gifSrc" onChange={handleSearchChange}/>
-        <Autocomplete freeSolo id="search-bar" disableClearable
-        options={searchOptions.map((option) => option.title)}
-        renderInput={() => (
-          <h1>Hello</h1>
-          // <div className="boardList">
-          //   {searchOptions.map(option => (
-          //       <SearchOption key={option.id} id={option.id} gifSrc={option.gifSrc} title={option.title}
-          //       onClick={() => {setCurrGif(option.gifSrc)}}/>
-          //       ))}
-          // </div>
-
-        )}
-        /> */}
-
-        {/* TODO: add images to search results with https://www.reddit.com/r/reactjs/comments/n8hp4x/materail_ui_autocomplete_how_to_show_an_image_in/ */}
-        {/* <label htmlFor='gifSrc'>
-              Value:{' '}
-              <Autocomplete
-
-                id="gif-search-bar"
-                options={searchOptions}
-                renderOption={option => <Fragment>{option.title}</Fragment>}
-                getOptionLabel={option => option.title || option}
-                renderInput={(params) => {
-                  <TextField {...params} label="limitTags" placeholder="Favorites" />
-                }}
-              />
-          </label>
-          <input type="text" id="inputGifSrc" name="gifSrc" onChange={handleSearchChange}/>
-
-        <img src={currGif}/> */}
+        <input type="text" id="inputGifSrc" name="gifSrc" onChange={handleSearchChange}/> */}
 
 
-      {/* <Autocomplete
-        id="free-solo-demo"
+      <Autocomplete
+        id="gifSearchBar"
         freeSolo
+        onInputChange={handleSearchChange}
+        onChange={displaySearchedImg}
         options={searchOptions.map((option) => option.title)}
-        renderInput={(params) => <TextField {...params} label="Search GIF" />}
-      /> */}
+        getOptionLabel={(option) => {
+          console.log(option)
+          if(searchOptions.length === 1){
+            console.log("option is null")
+            //TODO: find a way to populate autocomplete with popular picks when empty
+            return ""
+          } else {
+            console.log("option is not null")
+            return option
+          }
+          }}
+        renderInput={(params) => <TextField {...params} label="Search for a GIF"
+
+        />
+      }
+      />
 
         <button type="submit" id="createBoardButton"> Create</button>
 
