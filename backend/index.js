@@ -50,6 +50,16 @@ app.get('/board/search/:name', async (req, res) => {
     res.json(board);
 });
 
+app.get('/recent', async (req, res) => {
+    const offset = new Date();
+    offset.setTime(Date.now() - (5*60*1000))
+    const board = await prisma.board.findMany({
+        where: {createdAt: { gte: offset }},
+    });
+    res.json(board);
+});
+
+
 app.post('/board', async (req, res) => {
     const {imagesrc, boardname, boardtype, description} = req.body;
     const newBoard = await prisma.board.create({
@@ -106,10 +116,14 @@ app.get('/board/cards/:boardId', async (req, res) => {
 });
 
 app.delete('/card/:id', async (req, res) => {
-    const cardId = parseInt(req.params.id);
-    const card = await prisma.card.findUnique({
-        where: {id: cardId}
+    const id = parseInt(req.params.id);
+    await prisma.card.delete({
+        where: {
+          id: id,
+        },
     });
+
+    //TODO: add error handling here
     res.status(204).send()
 });
 

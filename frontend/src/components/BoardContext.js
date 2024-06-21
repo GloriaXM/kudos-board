@@ -20,3 +20,9 @@ export const useSearchOptionsContext = () => useContext(SearchOptionsContext);
 
 export const BoardSearchContext = createContext(null);
 export const useBoardSearchContext = () => useContext(BoardSearchContext);
+
+export const CardListContext = createContext([]);
+export const useCardListContext = () => useContext(CardListContext);
+
+export const currCardIdContext = createContext([]);
+export const useCurrCardIdContext = () => useContext(currCardIdContext);

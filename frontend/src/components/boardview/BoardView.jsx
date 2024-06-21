@@ -1,4 +1,4 @@
-import { useBoardViewId, } from '../BoardContext';
+import { useBoardViewId, CardListContext } from '../BoardContext';
 import {useState, useEffect} from 'react';
 import { NavLink } from 'react-router-dom';
 import CardList from './CardList'
@@ -12,6 +12,7 @@ function BoardView({boardName}) {
   const [upvotes, setUpvotes] = useState(0);
 
   const [cardList, setCardList] = useState([{}]);
+  const cardListValue = [cardList, setCardList];
 
   useEffect(() => {
     async function fetchBoardDetails() {
@@ -36,7 +37,9 @@ function BoardView({boardName}) {
         <p> Description: {description}</p>
         </div>
         <NavLink to='/createCard'>Create New Card</NavLink>
-        <CardList cardList={cardList}/>
+        <CardListContext.Provider value={cardListValue}>
+          <CardList cardList={cardList}/>
+        </CardListContext.Provider>
       </div>
     )
   }

@@ -40,10 +40,6 @@ function BoardCard({id, title, imgSrc, type}) {
         navigate('/');
     }
 
-    useEffect(() => {
-        console.log("boarlist")
-        console.log(boardList)}, [boardList])
-
     return (
         <div id={id} className="boardCard" onClick={handleBoardClick} >
             <h2> Title: {title}</h2>

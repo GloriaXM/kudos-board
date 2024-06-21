@@ -24,7 +24,8 @@ function CreateCard() {
             author: document.getElementById('inputAuthor').value,
             gifSrc: document.getElementById('inputGifSrc').value,
             upvotes: 0,
-            boardId: displayedBoardId
+            boardId: displayedBoardId,
+
         }),
         headers: {
             "Content-type": "application/json; charset=UTF-8"

@@ -19,6 +19,7 @@ model Board {
   boardType String
   imageSrc String
   description String
+  createdAt  DateTime  @default(now())
   cards Card[]
 }
 

@@ -13,6 +13,9 @@ function CreateBoard() {
         const result = await imageRequest.json();
         const resultGifSrc = result.data.images.downsized_medium.url;
 
+        console.log("DATE")
+    console.log(Date.now())
+
         let queryUrl = new URL(`http://localhost:5000/board`);
         fetch(queryUrl, {
             method: "POST",
@@ -20,7 +23,8 @@ function CreateBoard() {
                 imagesrc: resultGifSrc,
                 boardname: document.getElementById('inputTitle').value,
                 boardtype: document.getElementById('inputType').value,
-                description: document.getElementById('inputDescription').value
+                description: document.getElementById('inputDescription').value,
+                createdAt: Date.now()
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8"

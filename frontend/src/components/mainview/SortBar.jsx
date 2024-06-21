@@ -6,12 +6,15 @@ import {useState, useEffect} from 'react'
 function SortBar() {
   const [boardSearchTerm, setBoardSearchTerm] = useBoardSearchContext();
   const [boardList, setBoardList] = useBoardListContext();
+  const RECENTS_FILTER = 60*60*1000;
 
   useEffect(() => {
     async function fetchSearchedBoards() {
       let queryUrl;
       if (boardSearchTerm === null || boardSearchTerm === ""){
         queryUrl = new URL(`http://localhost:5000/board`);
+      } else if (boardSearchTerm === "recent") {
+        queryUrl = new URL(`http://localhost:5000/board/recent`);
       } else {
         queryUrl = new URL(`http://localhost:5000/board/search/${boardSearchTerm}`);
       }
