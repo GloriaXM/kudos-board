@@ -17,3 +17,6 @@ export const useCardViewId = () => useContext(CardViewId);
 
 export const SearchOptionsContext = createContext([{}]);
 export const useSearchOptionsContext = () => useContext(SearchOptionsContext);
+
+export const BoardSearchContext = createContext(null);
+export const useBoardSearchContext = () => useContext(BoardSearchContext);

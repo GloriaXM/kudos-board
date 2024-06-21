@@ -41,8 +41,11 @@ app.get('/board/:id', async (req, res) => {
 
 //TODO: separate searching functionality into its own route and use full text search
 app.get('/board/search/:name', async (req, res) => {
+    const name = req.params.name;
     const board = await prisma.board.findMany({
-        where: {boardName: req.params.name}
+        where: {boardName: {
+            contains: name,
+        }},
     });
     res.json(board);
 });
