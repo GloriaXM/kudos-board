@@ -1,8 +1,29 @@
 .boardCard{
+    display: flex;
     border: solid;
     border-radius: 20px;
+    width: 300px;
+    height: 400px;
+    flex-direction: column;
+    align-content: center;
+    margin: 20px;
+}
+
+.boardCardImg {
+    height: 300px;
+    width: 300px;
 }
 
 .deleteBoardButton {
     color: red;
+    width: 100px;
+    height: 40px;
+}
+
+.viewButton {
+    background-color: #f9f9f9;
+    width: 100px;
+    height: 60px;
+    border-radius: 8px;
+    align-content: center;
 }

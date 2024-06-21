@@ -24,6 +24,11 @@ function App() {
     const [boardList, setBoardList] = useState([{}]);
     const boardListValue = [boardList, setBoardList];
 
+    useEffect(() => {
+      console.log("Board List")
+      console.log(boardList)
+    })
+
   return (
     <div className="app">
       <Header/>

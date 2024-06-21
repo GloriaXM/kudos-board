@@ -1,9 +1,9 @@
-
 import SortBar from './SortBar'
 import BoardListDisplay from './BoardListDisplay'
 import {BoardContext, useBoardListContext, BoardSearchContext} from '../BoardContext'
 import {useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom';
+import './MainView.css'
 
 function MainView({}) {
 
@@ -34,7 +34,7 @@ function MainView({}) {
 
     return (
         <>
-           <NavLink to='/createBoard'>Create New Board</NavLink>
+           <NavLink className="createNewBoardButton" to='/createBoard'>Create New Board</NavLink>
             <BoardContext.Provider value={sortType} className="mainView">
             <BoardSearchContext.Provider value={boardSearchValue} className="mainView">
               <SortBar />

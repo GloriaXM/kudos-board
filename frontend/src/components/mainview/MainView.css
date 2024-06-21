@@ -1,0 +1,11 @@
+.createNewBoardButton {
+    margin: 10px;
+    background-color: #ede8f5;
+    width: 210px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 5px;
+    color: black;
+    font-size: x-large;
+
+}

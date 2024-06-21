@@ -45,9 +45,9 @@ function BoardCard({id, title, imgSrc, type}) {
             <h2> Title: {title}</h2>
             <img className="boardCardImg" src={imgSrc} alt="board image"/>
             <h3> Type: {type} </h3>
-            <NavLink to='/boardDetails'>View</NavLink>
+            <NavLink className="viewButton" to='/boardDetails'>View</NavLink>
             <button className="deleteBoardButton" onClick={onDeleteClick}> Delete </button>
-            <div className="deleteModal" style={{visibility: displayDeleteModal ? 'visible' : 'hidden' }}>
+            <div className="deleteModal" style={{display: displayDeleteModal ? 'block' : 'none' }}>
                 <div className="deleteModalContent">
                     <p> Are you sure?</p>
                     <button className="cancelDelete" onClick={() => {setDisplayDeleteModal(false)}}>No, Cancel</button>

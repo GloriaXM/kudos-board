@@ -54,7 +54,7 @@ function SingleCard(card) {
         <p> Note: {card.note}</p>
         <button onClick={handleUpvoteClick}> Upvote: {upvotes}</button>
         <button className="deleteCardButton" onClick={onDeleteClick}> Delete </button>
-            <div className="deleteCard" style={{visibility: displayDeleteModal ? 'visible' : 'hidden' }}>
+            <div className="deleteCard" style={{display: displayDeleteModal ? 'block' : 'none' }}>
                 <div className="deleteCardContent">
                     <p> Are you sure?</p>
                     <button className="cancelDelete" onClick={() => {setDisplayDeleteModal(false)}}>No, Cancel</button>

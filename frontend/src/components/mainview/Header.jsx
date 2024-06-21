@@ -3,9 +3,10 @@ import './Header.css'
 function Header() {
 
   return (
-    <>
-      <h1 className="header"> Kudos Board</h1>
-    </>
+    <div className="header">
+      <h1 className="name"> Kudos Board</h1>
+    </div>
+
   )
 }
 

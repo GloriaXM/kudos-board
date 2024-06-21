@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { useBoardViewId, useSearchOptionsContext } from '../BoardContext';
+import { useBoardViewId, useSearchOptionsContext, useCardListContext } from '../BoardContext';
 import { useNavigate } from 'react-router-dom';
 import Autocomplete from '@mui/material/Autocomplete';
 import SearchOption from './SearchOption'
@@ -11,6 +11,7 @@ function CreateCard() {
   const [searchOptions, setSearchOptions] = useSearchOptionsContext();
   const navigate = useNavigate();
   const [currGif, setCurrGif] = useState('');
+  const [currCard, setCurCard] = useState({});
 
   async function postNewCard(e) {
     e.preventDefault();
@@ -22,7 +23,7 @@ function CreateCard() {
             title: document.getElementById('inputTitle').value,
             note: document.getElementById('inputNote').value,
             author: document.getElementById('inputAuthor').value,
-            gifSrc: document.getElementById('inputGifSrc').value,
+            gifSrc: currGif,
             upvotes: 0,
             boardId: displayedBoardId,
 
@@ -38,7 +39,9 @@ function CreateCard() {
 
   async function handleSearchChange(e, value){
     const apiKey = import.meta.env.VITE_GIPHY_API_KEY;
-    const searchTerm = value;
+    const searchTerm = e.target.value;
+    console.log("VALUE")
+    console.log(searchTerm)
 
     let queryUrl = new URL(`http://api.giphy.com/v1/gifs/search?limit=7&api_key=${apiKey}`);
     queryUrl.searchParams.append("q", searchTerm);
@@ -46,25 +49,14 @@ function CreateCard() {
     console.log(queryUrl)
     const gifRequest = await fetch(queryUrl);
     const result = await gifRequest.json();
-    console.log(result.data);
 
     setSearchOptions(result.data);
+    setCurrGif(result.data[0].images.downsized.url)
 
   }
 
-  useState(() => {
-    console.log("search options")
-    console.log(searchOptions);
-  }, [searchOptions])
 
-  function displaySearchedImg (e, value) {
-    console.log("value")
-    console.log(value)
 
-    console.log("e target")
-    // setCurrGif()
-
-  }
 
   return (
     <>
@@ -81,38 +73,11 @@ function CreateCard() {
         <label htmlFor="author">Author (optional):</label>
         <input type="text" id="inputAuthor" name="author"/>
 
-        {/* <label htmlFor="gifSrc">Search Gif:</label>
-        <input type="text" id="inputGifSrc" name="gifSrc" onChange={handleSearchChange}/> */}
-
-
-      <Autocomplete
-        id="gifSearchBar"
-        freeSolo
-        onInputChange={handleSearchChange}
-        onChange={displaySearchedImg}
-        options={searchOptions.map((option) => option.title)}
-        getOptionLabel={(option) => {
-          console.log(option)
-          if(searchOptions.length === 1){
-            console.log("option is null")
-            //TODO: find a way to populate autocomplete with popular picks when empty
-            return ""
-          } else {
-            console.log("option is not null")
-            return option
-          }
-          }}
-        renderInput={(params) => <TextField {...params} label="Search for a GIF"
-
-        />
-      }
-      />
+        <label htmlFor="gifSrc">Search Gif:</label>
+        <input type="text" id="inputGifSrc" name="gifSrc" onChange={handleSearchChange}/>
+        <img src={currGif} />
 
         <button type="submit" id="createBoardButton"> Create</button>
-
-
-
-
     </form>
     </>
   )
