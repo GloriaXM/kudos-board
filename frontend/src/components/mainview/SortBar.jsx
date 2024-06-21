@@ -5,6 +5,8 @@ function SortBar() {
 
   return (
     <div className="navBar">
+      <SortButton sortType="all"/>
+      <SortButton sortType="recent"/>
       <SortButton sortType="congratulations"/>
       <SortButton sortType="thanks"/>
       <SortButton sortType="inspiration"/>

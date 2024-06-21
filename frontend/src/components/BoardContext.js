@@ -3,6 +3,9 @@ import { createContext, useContext } from 'react';
 export const BoardContext = createContext('');
 export const useBoardContext = () => useContext(BoardContext);
 
+export const BoardListContext = createContext([]);
+export const useBoardListContext = () => useContext(BoardListContext);
+
 export const BoardViewContext = createContext(false);
 export const useBoardViewContext = () => useContext(BoardViewContext);
 
@@ -11,3 +14,6 @@ export const useBoardViewId = () => useContext(BoardViewId);
 
 export const CardViewId = createContext(0);
 export const useCardViewId = () => useContext(CardViewId);
+
+export const SearchOptionsContext = createContext([{}]);
+export const useSearchOptionsContext = () => useContext(SearchOptionsContext);

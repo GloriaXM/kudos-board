@@ -9,12 +9,9 @@ function CreateBoard() {
         e.preventDefault();
         const apiKey = import.meta.env.VITE_GIPHY_API_KEY;
 
-        const imageRequest = await fetch(`http://api.giphy.com/v1/stickers/random/?api_key=CO4lsYzTks5eu57v8P8nXDk9IjpAgJeC`);
+        const imageRequest = await fetch(`http://api.giphy.com/v1/stickers/random/?api_key=${apiKey}`);
         const result = await imageRequest.json();
-        console.log("Result");
-        console.log(result);
         const resultGifSrc = result.data.images.downsized_medium.url;
-        console.log(resultGifSrc)
 
         let queryUrl = new URL(`http://localhost:5000/board`);
         fetch(queryUrl, {

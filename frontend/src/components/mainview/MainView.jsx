@@ -1,20 +1,21 @@
 
 import SortBar from './SortBar'
 import BoardListDisplay from './BoardListDisplay'
-import {BoardContext} from '../BoardContext'
+import {BoardContext, useBoardListContext} from '../BoardContext'
 import {useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom';
 
 function MainView({}) {
-    const [boardList, setBoardList] = useState([{}]);
 
-    const [boardListSortType, setBoardListSortType] = useState('');
+    const [boardListSortType, setBoardListSortType] = useState('all');
     const sortType = [boardListSortType, setBoardListSortType];
+
+    const [boardList, setBoardList] = useBoardListContext();
 
     useEffect(() => {
         async function fetchBoardList() {
           let queryUrl = new URL("http://localhost:5000/board?");
-          if (boardListSortType !== ''){
+          if (boardListSortType !== 'all'){
             queryUrl.searchParams.append("type", boardListSortType);
           }
           const response = await fetch(queryUrl);

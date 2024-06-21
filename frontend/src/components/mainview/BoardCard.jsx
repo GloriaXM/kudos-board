@@ -1,15 +1,48 @@
 import './BoardCard.css'
-import { useBoardViewId } from '../BoardContext';
+import { useBoardViewId, useBoardListContext } from '../BoardContext';
 import { NavLink } from 'react-router-dom';
+import {useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 function BoardCard({id, title, imgSrc, type}) {
     const [displayedBoardId, setDisplayedBoardId] = useBoardViewId();
+    const [displayDeleteModal, setDisplayDeleteModal] = useState(false);
+    const [boardList, setBoardList] = useBoardListContext();
+    const navigate = useNavigate();
 
     const handleBoardClick = () => {
         setDisplayedBoardId(id);
     }
 
-    console.log("imgsrc", imgSrc)
+    function onDeleteClick (){
+        setDisplayDeleteModal(true);
+    }
+
+    function handleDeleteBoard(e){
+
+        setDisplayDeleteModal(false);
+        let queryUrl = new URL(`http://localhost:5000/board/${displayedBoardId}`);
+        console.log(queryUrl)
+        fetch(queryUrl, {
+            method: "DELETE",
+            body: JSON.stringify({
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+            });
+        console.log("node")
+        console.log(boardList)
+        setBoardList(boardList.filter(function(board) {
+            return board.id != e.target.parentNode.parentNode.parentNode.id;
+        }))
+        navigate('/');
+    }
+
+    useEffect(() => {
+        console.log("boarlist")
+        console.log(boardList)}, [boardList])
 
     return (
         <div id={id} className="boardCard" onClick={handleBoardClick} >
@@ -17,7 +50,14 @@ function BoardCard({id, title, imgSrc, type}) {
             <img className="boardCardImg" src={imgSrc} alt={imgSrc}/>
             <h3> Type: {type} </h3>
             <NavLink to='/boardDetails'>View</NavLink>
-            <button className="deleteBoardButton"> Delete </button>
+            <button className="deleteBoardButton" onClick={onDeleteClick}> Delete </button>
+            <div className="deleteModal" style={{visibility: displayDeleteModal ? 'visible' : 'hidden' }}s>
+                <div className="deleteModalContent">
+                    <p> Are you sure?</p>
+                    <button className="cancelDelete" onClick={() => {setDisplayDeleteModal(false)}}>No, Cancel</button>
+                    <button className="confirmDelete" onClick={handleDeleteBoard}>Yes, Delete</button>
+                </div>
+            </div>
         </div>
     )
 }
