@@ -32,7 +32,7 @@ function App() {
         <BoardListContext.Provider value={boardListValue}>
         <Routes>
           <Route exact path='/' element={<MainView/>}></Route>
-          <Route exact path='/boardDetails' element={<BoardView/>}></Route>
+          <Route exact path='/boardDetails' element={<BoardView />}></Route>
           <Route exact path='/createBoard' element={<CreateBoard/>}></Route>
 
           <Route exact path='/createCard' element={<CreateCard/>}></Route>

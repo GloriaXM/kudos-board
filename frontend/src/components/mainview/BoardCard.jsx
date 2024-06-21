@@ -43,7 +43,7 @@ function BoardCard({id, title, imgSrc, type}) {
     return (
         <div id={id} className="boardCard" onClick={handleBoardClick} >
             <h2> Title: {title}</h2>
-            <img className="boardCardImg" src={imgSrc} alt={imgSrc}/>
+            <img className="boardCardImg" src={imgSrc} alt="board image"/>
             <h3> Type: {type} </h3>
             <NavLink to='/boardDetails'>View</NavLink>
             <button className="deleteBoardButton" onClick={onDeleteClick}> Delete </button>

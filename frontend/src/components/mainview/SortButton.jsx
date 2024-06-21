@@ -8,7 +8,6 @@ function SortButton({sortType}) {
   return (
       <button className={sortType} onClick={() => {
         setBoardListSortType(sortType);
-        console.log(sortType);
         }}> {sortType}</button>
   )
 }

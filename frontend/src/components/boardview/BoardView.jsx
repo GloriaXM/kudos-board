@@ -7,34 +7,34 @@ import CardList from './CardList'
 function BoardView({boardName}) {
   const [displayedBoardId, setDisplayedBoardId] = useBoardViewId();
 
-  const [imageSrc, setImageSrc] = useState('');
-  const [description, setDescription] = useState('');
-  const [upvotes, setUpvotes] = useState(0);
-
   const [cardList, setCardList] = useState([{}]);
   const cardListValue = [cardList, setCardList];
+  const [boardDetails, setBoardDetails] = useState(null);
 
   useEffect(() => {
-    async function fetchBoardDetails() {
-      let queryUrl = new URL(`http://localhost:5000/board/cards/${displayedBoardId}`);
+    async function fetchBoardCards() {
+      const queryUrl = new URL(`http://localhost:5000/board/cards/${displayedBoardId}`);
       const response = await fetch(queryUrl);
       const loadedCards = await response.json();
       setCardList(loadedCards);
     }
+    async function fetchBoardDetails() {
+      const queryUrl = new URL(`http://localhost:5000/board/${displayedBoardId}`);
+      const response = await fetch(queryUrl);
+      const loadedDetails = await response.json();
+      setBoardDetails(loadedDetails);
+    }
+    fetchBoardCards();
     fetchBoardDetails();
   }, [displayedBoardId]);
-
-  useEffect(() => {
-    console.log(cardList)
-  }, [cardList]);
 
     return (
       <div className="boardView" >
         <div className="boardViewList">
         <button> <NavLink to='/'>Back</NavLink></button>
-        <h2> Title: {displayedBoardId} </h2>
-        <img className="" src={imageSrc}/>
-        <p> Description: {description}</p>
+        <h2> {(boardDetails === null) ? "Untitled" : boardDetails.boardName} </h2>
+        <img className="" src={(boardDetails === null) ? "" : boardDetails.imageSrc}/>
+        <p> {(boardDetails === null) ? "No Description" : boardDetails.description}</p>
         </div>
         <NavLink to='/createCard'>Create New Card</NavLink>
         <CardListContext.Provider value={cardListValue}>

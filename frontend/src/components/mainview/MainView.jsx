@@ -24,7 +24,6 @@ function MainView({}) {
           } else if (boardListSortType !== "all"){
             queryUrl.searchParams.append("type", boardListSortType);
           }
-          console.log(queryUrl);
 
           const response = await fetch(queryUrl);
           const loadedBoards = await response.json();
@@ -32,11 +31,6 @@ function MainView({}) {
         }
         fetchBoardList();
       }, [boardListSortType]);
-
-    useEffect(() => {
-        console.log(boardList);
-    }, [boardList]);
-
 
     return (
         <>
