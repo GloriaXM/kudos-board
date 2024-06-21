@@ -15,11 +15,8 @@ function SortBar() {
       } else {
         queryUrl = new URL(`http://localhost:5000/board/search/${boardSearchTerm}`);
       }
-      console.log(queryUrl)
       const response = await fetch(queryUrl);
       const loadedBoards = await response.json();
-      console.log("Loaded boards")
-      console.log(loadedBoards)
       setBoardList(loadedBoards);
     }
     fetchSearchedBoards();
