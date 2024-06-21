@@ -10,9 +10,9 @@ html {
 }
 
 .app {
-  width: 960px;
   margin: 0 auto;
-  padding: 20px;
+  display: flex;
+  justify-content: flex-start
 }
 
 nav ul {
@@ -46,4 +46,5 @@ p {
 .app {
   display: flex;
   flex-direction: column;
+  background-color: #ede8f5;
 }

@@ -2,6 +2,7 @@ import { useBoardViewId, CardListContext } from '../BoardContext';
 import {useState, useEffect} from 'react';
 import { NavLink } from 'react-router-dom';
 import CardList from './CardList'
+import './BoardView.css'
 
 
 function BoardView({boardName}) {
@@ -34,7 +35,7 @@ function BoardView({boardName}) {
         <button> <NavLink to='/'>Back</NavLink></button>
         <h2> {(boardDetails === null) ? "Untitled" : boardDetails.boardName} </h2>
         <img className="" src={(boardDetails === null) ? "" : boardDetails.imageSrc}/>
-        <p> {(boardDetails === null) ? "No Description" : boardDetails.description}</p>
+        <p className="description"> {(boardDetails === null) ? "No Description" : boardDetails.description}</p>
         </div>
         <NavLink to='/createCard'>Create New Card</NavLink>
         <CardListContext.Provider value={cardListValue}>

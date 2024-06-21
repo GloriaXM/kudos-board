@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import { useCardListContext } from '../BoardContext';
+import './SingleCard.css'
 
 function SingleCard(card) {
   const [upvotes, setUpvotes] = useState(card.upvotes);
@@ -48,9 +49,9 @@ function SingleCard(card) {
 
   return (
     <div className="singleCard" onClick={handleCardClick}>
-        <h2> Card Title: {card.title}</h2>
-        <h3> Author: {card.author}</h3>
-        <img src={card.gifSrc}></img>
+        <h2>  {card.title}</h2>
+        <h3 defaultValue="Anonymous"> {card.author}</h3>
+        <img className="cardGif" src={card.gifSrc}></img>
         <p> Note: {card.note}</p>
         <button onClick={handleUpvoteClick}> Upvote: {upvotes}</button>
         <button className="deleteCardButton" onClick={onDeleteClick}> Delete </button>

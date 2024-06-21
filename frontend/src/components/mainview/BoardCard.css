@@ -7,11 +7,15 @@
     flex-direction: column;
     align-content: center;
     margin: 20px;
+    border-color: #3d52a0
 }
 
 .boardCardImg {
-    height: 300px;
     width: 300px;
+    height: 300px;
+    overflow: scroll;
+    object-fit: cover;
+
 }
 
 .deleteBoardButton {
@@ -26,4 +30,8 @@
     height: 60px;
     border-radius: 8px;
     align-content: center;
+}
+
+.confirmDelete {
+    color: red;
 }

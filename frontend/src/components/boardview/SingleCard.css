@@ -1,0 +1,25 @@
+.singleCard {
+    border: solid thick;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    border-radius: 20px;
+    padding: 4px;
+    justify-content: center;
+    margin: 10px;
+    border-color: #3d52a0;
+    color: #3d52a0
+}
+
+.cardGif{
+    width: 250px;
+    height: 250px;
+}
+
+.deleteCardButton{
+    color: red;
+}
+
+.confirmDelete {
+    color: red;
+}

@@ -6,5 +6,5 @@
     width: 100%;
     box-sizing: revert;
     display: flex;
-
+    top: 0;
 }

@@ -1,5 +1,6 @@
 import SingleCard from './SingleCard'
 import {useState, useEffect} from 'react'
+import './CardList.css'
 
 function CardList({cardList}) {
   const [currCardId, setCurrCardID] = useState(0)

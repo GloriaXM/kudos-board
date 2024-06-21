@@ -1,3 +1,12 @@
 .boardView {
-    float: top;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin: 20px;
+
+}
+
+.description {
+    border: solid;
+    border-radius: 5px;
 }
