@@ -17,10 +17,15 @@ function MainView({}) {
 
     useEffect(() => {
         async function fetchBoardList() {
-          let queryUrl = new URL("http://localhost:5000/board?");
-          if (boardListSortType !== 'all'){
+          let queryUrl = new URL("http://localhost:5000/board");
+
+          if (boardListSortType === "recent") {
+            queryUrl = new URL("http://localhost:5000/recent");
+          } else if (boardListSortType !== "all"){
             queryUrl.searchParams.append("type", boardListSortType);
           }
+          console.log(queryUrl);
+
           const response = await fetch(queryUrl);
           const loadedBoards = await response.json();
           setBoardList(loadedBoards);
