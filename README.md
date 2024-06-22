@@ -1,5 +1,3 @@
-📝 `NOTE` Use this template to initialize the contents of a README.md file for your application. As you work on your assignment over the course of the week, update the required or stretch features lists to indicate which features you have completed by changing `[ ]` to `[x]`. (🚫 Remove this paragraph before submitting your assignment.)
-
 ## Unit Assignment: Kudos Board
 
 Submitted by: Gloria
@@ -77,4 +75,7 @@ https://mui.com/material-ui/getting-started/
 
 ### Shout out
 
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+My manager Mike and peer mentor Phillip for giving me interesting new things to try with my code
+
+
+https://github.com/GloriaXM/kudos-board/assets/112780860/9401f236-6bda-408f-a35d-e956efdb9337
