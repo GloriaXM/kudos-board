@@ -48,9 +48,7 @@ Deployed Application (optional): [Kudos Board Deployed Site](ADD_LINK_HERE)
 
 ### Walkthrough Video
 
-`TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after adding walkthrough video)
-
-`ADD_EMBEDDED_CODE_HERE`
+[`ADD_EMBEDDED_CODE_HERE`](https://github.com/GloriaXM/kudos-board/assets/112780860/9401f236-6bda-408f-a35d-e956efdb9337)
 
 ### Reflection
 
@@ -78,4 +76,4 @@ https://mui.com/material-ui/getting-started/
 My manager Mike and peer mentor Phillip for giving me interesting new things to try with my code
 
 
-https://github.com/GloriaXM/kudos-board/assets/112780860/9401f236-6bda-408f-a35d-e956efdb9337
+
