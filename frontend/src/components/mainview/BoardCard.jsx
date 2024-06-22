@@ -23,7 +23,6 @@ function BoardCard({id, title, imgSrc, type}) {
 
         setDisplayDeleteModal(false);
         let queryUrl = new URL(`http://localhost:5000/board/${displayedBoardId}`);
-        console.log(queryUrl)
         fetch(queryUrl, {
             method: "DELETE",
             body: JSON.stringify({
@@ -32,8 +31,6 @@ function BoardCard({id, title, imgSrc, type}) {
                 "Content-type": "application/json; charset=UTF-8"
             }
             });
-        console.log("node")
-        console.log(boardList)
         setBoardList(boardList.filter(function(board) {
             return board.id != e.target.parentNode.parentNode.parentNode.id;
         }))

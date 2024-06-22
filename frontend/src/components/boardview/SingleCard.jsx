@@ -6,7 +6,6 @@ function SingleCard(card) {
   const [upvotes, setUpvotes] = useState(card.upvotes);
   const [clickedBefore, setClickedBefore] = useState(false);
   const [displayDeleteModal, setDisplayDeleteModal] = useState(false);
-  // const [currCardId, setCurrCardId] = useState(0);
   const [cardList, setCardList] = useCardListContext();
 
   const handleCardClick = (e) => {
@@ -30,7 +29,6 @@ function SingleCard(card) {
 
     setDisplayDeleteModal(false);
     let queryUrl = new URL(`http://localhost:5000/card/${card.id}`);
-    console.log(queryUrl)
     fetch(queryUrl, {
         method: "DELETE",
         body: JSON.stringify({
@@ -41,8 +39,6 @@ function SingleCard(card) {
         });
 
     setCardList(cardList.filter(function(card) {
-        console.log(card.id)
-        console.log(e.target.parentNode.parentNode.parentNode.id)
         return card.id != e.target.id;
     }))
 }

@@ -17,8 +17,6 @@ function SortBar() {
       }
       const response = await fetch(queryUrl);
       const loadedBoards = await response.json();
-      console.log("LOADED BOARDS")
-      console.log(loadedBoards)
       setBoardList(loadedBoards);
     }
     fetchSearchedBoards();

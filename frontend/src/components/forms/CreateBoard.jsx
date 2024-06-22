@@ -27,11 +27,9 @@ function CreateBoard() {
                 "Content-type": "application/json; charset=UTF-8"
             }
             })
-            .then((response) => response.json())
-            .then((json) => console.log(json));
+            .then((response) => response.json());
         navigate('/');
     }
-
 
   return (
     <>
@@ -52,8 +50,6 @@ function CreateBoard() {
         <input type="text" id="inputType" name="type"/>
 
         <button type="submit" id="createBoardButton"> Create</button>
-
-
     </form>
     </>
   )
