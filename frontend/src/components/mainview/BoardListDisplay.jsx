@@ -1,11 +1,17 @@
-function BoardListDisplay() {
+import BoardCard from './BoardCard'
+import {useState, useEffect} from 'react'
+import './BoardListDisplay.css'
 
-    return (
-      <>
-        <h1> BoardListDisplay</h1>
+function BoardListDisplay({boardList}) {
 
-      </>
-    )
-  }
+  return (
+    <div className="boardList">
+      {boardList.map(board => (
+          <BoardCard key={board.id} id={board.id} title={board.boardName} imgSrc={board.imageSrc} type={board.boardType}
+          onClick={() => {setCurrBoard(board.id)}}/>
+          ))}
+    </div>
+  )
+}
 
-  export default BoardListDisplay
+export default BoardListDisplay

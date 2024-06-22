@@ -15,14 +15,21 @@ datasource db {
 
 model Board {
   id Int @id @default(autoincrement())
-  imageLink String
   boardName String
   boardType String
+  imageSrc String
+  description String
+  createdAt  DateTime  @default(now())
   cards Card[]
 }
 
 model Card {
   id Int @id @default(autoincrement())
-  board Board @relation(fields: [boardId], references: [id])
+  title String
+  note String
+  author String
+  gifSrc String
+  upvotes Int
+  board Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
   boardId Int
 }
