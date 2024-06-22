@@ -40,23 +40,16 @@ function CreateCard() {
   async function handleSearchChange(e, value){
     const apiKey = import.meta.env.VITE_GIPHY_API_KEY;
     const searchTerm = e.target.value;
-    console.log("VALUE")
-    console.log(searchTerm)
 
     let queryUrl = new URL(`http://api.giphy.com/v1/gifs/search?limit=7&api_key=${apiKey}`);
     queryUrl.searchParams.append("q", searchTerm);
-    console.log("quaryUrl");
-    console.log(queryUrl)
+
     const gifRequest = await fetch(queryUrl);
     const result = await gifRequest.json();
 
     setSearchOptions(result.data);
     setCurrGif(result.data[0].images.downsized.url)
-
   }
-
-
-
 
   return (
     <>

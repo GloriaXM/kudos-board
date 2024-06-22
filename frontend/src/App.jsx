@@ -9,6 +9,7 @@ import {BoardListContext, BoardViewId, SearchOptionsContext} from './components/
 import CreateBoard from './components/forms/CreateBoard.jsx'
 import CreateCard from './components/forms/CreateCard'
 import {useEffect, useState} from 'react'
+import Footer from './components/mainview/Footer'
 
 
 
@@ -24,11 +25,6 @@ function App() {
     const [boardList, setBoardList] = useState([{}]);
     const boardListValue = [boardList, setBoardList];
 
-    useEffect(() => {
-      console.log("Board List")
-      console.log(boardList)
-    })
-
   return (
     <div className="app">
       <Header/>
@@ -39,13 +35,12 @@ function App() {
           <Route exact path='/' element={<MainView/>}></Route>
           <Route exact path='/boardDetails' element={<BoardView />}></Route>
           <Route exact path='/createBoard' element={<CreateBoard/>}></Route>
-
           <Route exact path='/createCard' element={<CreateCard/>}></Route>
-
         </Routes>
         </BoardListContext.Provider>
         </SearchOptionsContext.Provider>
         </BoardViewId.Provider>
+      <Footer/>
     </div>
   )
 }
