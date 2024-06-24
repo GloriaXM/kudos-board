@@ -156,3 +156,31 @@ app.post('/board/card', async (req, res) => {
     });
     res.json(newCard);
 });
+
+app.get('/card/comments/:cardId', async (req, res) => {
+    const cardId = parseInt(req.params.cardId);
+
+    const cards = await prisma.card.findUnique({
+        where: {
+            id: cardId,
+        },
+    });
+    res.json(cards);
+});
+
+app.patch('/card/comments/:cardId', async (req, res) => {
+    const cardId = parseInt(req.params.cardId);
+    const newComment = req.body.newComment;
+
+    const updateComments = await prisma.card.update({
+        where: {
+          id: cardId,
+        },
+        data: {
+            comments: {
+                push: newComment,
+            },
+        },
+    })
+    res.send(updateComments);
+});

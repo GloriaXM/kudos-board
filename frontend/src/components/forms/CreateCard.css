@@ -1,0 +1,16 @@
+.createCardForm {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+}
+
+.searchedGif {
+    width: 300px;
+    max-width: 500px;
+    margin: 10px;
+}
+
+.createBoardButton {
+    border: solid;
+    margin: 10px;
+}
