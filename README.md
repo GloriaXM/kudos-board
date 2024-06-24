@@ -42,8 +42,8 @@ Deployed Application (optional): [Kudos Board Deployed Site](ADD_LINK_HERE)
   - [ ] Allow boards to be deleted only if they are owned by the user.
 - [ ] **Deployment**
   - [ ] Website is deployed via Render.
-- [ ] **Comments**
-  - [ ] Users should be able to comment on cards.
+- [x] **Comments**
+  - [x] Users should be able to comment on cards.
 
 
 ### Walkthrough Video
