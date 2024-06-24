@@ -1,0 +1,12 @@
+.footer {
+    background-color: #3d52a0;
+    color: #f9f9f9;
+    height: 50px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.copyrightFake{
+    width: 100px;
+}

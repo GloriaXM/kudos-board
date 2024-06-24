@@ -30,6 +30,7 @@ model Card {
   author String
   gifSrc String
   upvotes Int
+  comments String[]
   board Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
   boardId Int
 }

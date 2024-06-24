@@ -1,9 +1,12 @@
 import './CreateBoard.css';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { InputLabel, Select, MenuItem } from '@material-ui/core';
+import {useEffect, useState} from 'react'
 
 function CreateBoard() {
     const navigate = useNavigate();
+    const [boardType, setBoardType] = useState('');
 
     async function postNewBoard(e) {
         e.preventDefault();
@@ -19,7 +22,7 @@ function CreateBoard() {
             body: JSON.stringify({
                 imagesrc: resultGifSrc,
                 boardname: document.getElementById('inputTitle').value,
-                boardtype: document.getElementById('inputType').value,
+                boardtype: boardType,
                 description: document.getElementById('inputDescription').value,
                 createdAt: Date.now()
             }),
@@ -31,8 +34,14 @@ function CreateBoard() {
         navigate('/');
     }
 
+    const handleChange = (event) => {
+        setBoardType(event.target.value);
+      };
+
+      useEffect(() => {console.log(boardType)})
+
   return (
-    <>
+    <div className="createBoardForm">
     <button> <NavLink to='/'>Back</NavLink></button>
     <form id="createBoardForm" className="createBoardForm" onSubmit={postNewBoard}>
 
@@ -46,12 +55,21 @@ function CreateBoard() {
         <label htmlFor="author">Author (optional):</label>
         <input type="text" id="inputAuthor" name="author"/>
 
-        <label htmlFor="type">Type:</label>
-        <input type="text" id="inputType" name="type"/>
+        <InputLabel className="inputType">Select Board Type</InputLabel>
+        <Select
+            className="inputTypeSelect"
+            value={boardType}
+            label="type"
+            onChange={handleChange}
+        >
+            <MenuItem value={"congratulations"}>Congratulations</MenuItem>
+            <MenuItem value={"thanks"}>Thanks</MenuItem>
+            <MenuItem value={"inspiration"}>Inspiration</MenuItem>
+        </Select>
 
-        <button type="submit" id="createBoardButton"> Create</button>
+        <button type="submit" className="createBoardButton"> Create</button>
     </form>
-    </>
+    </div>
   )
 }
 

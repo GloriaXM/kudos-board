@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useBoardViewId, useSearchOptionsContext, useCardListContext } from '../BoardContext';
 import { useNavigate } from 'react-router-dom';
+import "./CreateCard.css"
 import Autocomplete from '@mui/material/Autocomplete';
 import SearchOption from './SearchOption'
 import {useState, useEffect} from 'react'
@@ -52,7 +53,7 @@ function CreateCard() {
   }
 
   return (
-    <>
+    <div className='createCard'>
     <button> <NavLink to='/'>Back</NavLink></button>
     <form id="createCardForm" className="createCardForm" onSubmit={postNewCard}>
 
@@ -68,11 +69,12 @@ function CreateCard() {
 
         <label htmlFor="gifSrc">Search Gif:</label>
         <input type="text" id="inputGifSrc" name="gifSrc" onChange={handleSearchChange}/>
-        <img src={currGif} />
 
-        <button type="submit" id="createBoardButton"> Create</button>
+        <img className="searchedGif" src={currGif} alt="searched gif"/>
+        <button type="submit" className="createBoardButton"> Create</button>
     </form>
-    </>
+
+    </div>
   )
 }
 

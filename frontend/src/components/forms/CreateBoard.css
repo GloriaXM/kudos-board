@@ -1,0 +1,14 @@
+.createBoardForm {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+}
+
+.createBoardButton {
+    max-width: 300px;
+}
+
+.inputTypeSelect {
+    border: solid;
+    border-radius: 5px;
+}
