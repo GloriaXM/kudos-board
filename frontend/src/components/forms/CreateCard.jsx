@@ -2,10 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { useBoardViewId, useSearchOptionsContext, useCardListContext } from '../BoardContext';
 import { useNavigate } from 'react-router-dom';
 import "./CreateCard.css"
-import Autocomplete from '@mui/material/Autocomplete';
-import SearchOption from './SearchOption'
 import {useState, useEffect} from 'react'
-import TextField from '@mui/material/TextField';
 
 function CreateCard() {
   const [displayedBoardId, setDisplayedBoardId] = useBoardViewId();
@@ -73,7 +70,6 @@ function CreateCard() {
         <img className="searchedGif" src={currGif} alt="searched gif"/>
         <button type="submit" className="createBoardButton"> Create</button>
     </form>
-
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import './SortBar.css'
 import SortButton from './SortButton'
 import { useBoardSearchContext, useBoardListContext } from '../BoardContext'
-import {useState, useEffect} from 'react'
+import { useEffect} from 'react'
 
 function SortBar() {
   const [boardSearchTerm, setBoardSearchTerm] = useBoardSearchContext();

@@ -6,7 +6,6 @@ function Header() {
     <div className="header">
       <h1 className="name"> Kudos Board</h1>
     </div>
-
   )
 }
 

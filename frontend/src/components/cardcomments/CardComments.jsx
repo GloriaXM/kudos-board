@@ -1,7 +1,5 @@
 import './CardComments.css'
-import {useState, useEffect} from 'react'
 import Comment from './Comment.jsx'
-import { useCardListContext } from '../BoardContext';
 
 function CardComments ({show, setShow, cardId, commentList, setCommentList}) {
 

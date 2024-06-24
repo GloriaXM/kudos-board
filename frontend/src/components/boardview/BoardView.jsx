@@ -4,8 +4,7 @@ import { NavLink } from 'react-router-dom';
 import CardList from './CardList'
 import './BoardView.css'
 
-
-function BoardView({boardName}) {
+function BoardView({}) {
   const [displayedBoardId, setDisplayedBoardId] = useBoardViewId();
 
   const [cardList, setCardList] = useState([{}]);

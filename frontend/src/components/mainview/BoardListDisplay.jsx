@@ -1,5 +1,4 @@
 import BoardCard from './BoardCard'
-import {useState, useEffect} from 'react'
 import './BoardListDisplay.css'
 
 function BoardListDisplay({boardList}) {
