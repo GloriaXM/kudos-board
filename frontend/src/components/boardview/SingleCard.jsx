@@ -53,8 +53,6 @@ function SingleCard(card) {
     setCommentList(loadedComments.comments)
   }
 
-
-
   function openComments () {
     fetchComments();
     setDisplayComments(true); //Only call on initial comments open
@@ -69,7 +67,6 @@ function SingleCard(card) {
         <button onClick={handleUpvoteClick}> Upvote: {upvotes}</button>
         <button onClick={openComments}> Comments</button>
 
-
         <button className="deleteCardButton" onClick={onDeleteClick}> Delete </button>
             <div className="deleteCard" style={{display: displayDeleteModal ? 'block' : 'none' }}>
                 <div className="deleteCardContent">
@@ -78,7 +75,6 @@ function SingleCard(card) {
                     <button id={card.id} className="confirmDelete" onClick={handleDeleteCard}>Yes, Delete</button>
                 </div>
             </div>
-
 
         <CardComments show={displayComments} setShow={setDisplayComments} cardId={card.id} commentList={commentList} setCommentList={setCommentList}/>
     </div>

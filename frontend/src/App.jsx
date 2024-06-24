@@ -8,11 +8,8 @@ import BoardView from './components/boardview/BoardView'
 import {BoardListContext, BoardViewId, SearchOptionsContext} from './components/BoardContext'
 import CreateBoard from './components/forms/CreateBoard.jsx'
 import CreateCard from './components/forms/CreateCard'
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import Footer from './components/mainview/Footer'
-
-
-
 
 function App() {
 

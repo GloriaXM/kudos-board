@@ -1,7 +1,7 @@
 import './BoardCard.css'
 import { useBoardViewId, useBoardListContext } from '../BoardContext';
 import { NavLink } from 'react-router-dom';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 

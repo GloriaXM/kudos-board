@@ -1,6 +1,4 @@
-// import './Sor.css'
-import { useContext } from 'react';
-import { BoardContext, useBoardContext } from '../BoardContext';
+import { useBoardContext } from '../BoardContext';
 
 function SortButton({sortType}) {
   const [boardListSortType, setBoardListSortType] = useBoardContext();
